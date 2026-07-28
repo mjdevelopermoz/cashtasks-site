@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email Confirmado - CashTasks</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+    <div class="container confirm-box">
+        <img src="assets/images/logo.png" alt="CashTasks" style="max-width: 180px;">
+
+        <div class="success-icon">✅</div>
+        <h1>Email Confirmado!</h1>
+        <p>Seu email foi verificado com sucesso.</p>
+        <p class="info">Volte para o aplicativo para completar seu cadastro.</p>
+
+        <a href="cashtasks://auth-callback" class="btn">Abrir CashTasks</a>
+
+        <div class="deep-link">
+            <p>ou copie e cole no navegador:</p>
+            <code>cashtasks://auth-callback</code>
+        </div>
+    </div>
+
+    <script>
+        // Tentar abrir o app automaticamente após 2 segundos
+        setTimeout(function() {
+            window.location.href = "cashtasks://auth-callback";
+        }, 2500);
+    </script>
+</body>
+</html>
