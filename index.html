@@ -3,34 +3,202 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="CashTasks - Ganhe dinheiro realizando tarefas simples no seu celular. Converta pontos em dinheiro real via M-Pesa, Emola e PayPal.">
     <title>CashTasks - Ganhe dinheiro realizando tarefas</title>
     <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="icon" href="assets/images/favicon.png" type="image/png">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 </head>
 <body>
+
+    <!-- HEADER -->
     <header>
-        <div class="container">
-            <img src="assets/images/logo.png" alt="CashTasks" class="logo">
+        <div class="container header-container">
+            <a href="index.html" class="logo-link">
+                <img src="assets/images/logo.png" alt="CashTasks" class="logo">
+            </a>
             <nav>
-                <a href="index.html">Início</a>
+                <a href="index.html" class="active">Início</a>
                 <a href="termos.html">Termos</a>
                 <a href="privacidade.html">Privacidade</a>
                 <a href="ajuda.html">Ajuda</a>
+                <a href="cashtasks://open" class="nav-btn">Abrir App</a>
             </nav>
+            <button class="menu-toggle" id="menuToggle" aria-label="Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
         </div>
     </header>
 
+    <!-- HERO -->
     <section class="hero">
-        <div class="container">
-            <h1>💰 CashTasks</h1>
-            <p>Ganhe dinheiro realizando tarefas simples no seu celular!</p>
-            <a href="cashtasks://open" class="btn">Abrir CashTasks</a>
+        <div class="container hero-container">
+            <div class="hero-content">
+                <span class="badge">🚀 Nova versão disponível</span>
+                <h1>Transforme seu tempo <span>em dinheiro</span></h1>
+                <p>Realize tarefas simples, ganhe pontos e converta em dinheiro real. Saque via <strong>M-Pesa</strong>, <strong>Emola</strong> ou <strong>PayPal</strong>.</p>
+                <div class="hero-buttons">
+                    <a href="cashtasks://open" class="btn btn-primary">
+                        📱 Abrir CashTasks
+                    </a>
+                    <a href="#como-funciona" class="btn btn-secondary">
+                        Como funciona →
+                    </a>
+                </div>
+                <div class="stats">
+                    <div class="stat-item">
+                        <span class="stat-number">10K+</span>
+                        <span class="stat-label">Usuários ativos</span>
+                    </div>
+                    <div class="stat-divider"></div>
+                    <div class="stat-item">
+                        <span class="stat-number">500K+</span>
+                        <span class="stat-label">Tarefas concluídas</span>
+                    </div>
+                    <div class="stat-divider"></div>
+                    <div class="stat-item">
+                        <span class="stat-number">100K+</span>
+                        <span class="stat-label">Pontos distribuídos</span>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-image">
+                <div class="phone-mockup">
+                    <img src="assets/images/app-screenshot.png" alt="CashTasks App" class="phone-screen">
+                    <div class="phone-badge">💰</div>
+                    <div class="floating-card card-1">🎮 Jogos</div>
+                    <div class="floating-card card-2">📱 Apps</div>
+                    <div class="floating-card card-3">📸 Redes</div>
+                </div>
+            </div>
         </div>
     </section>
 
-    <footer>
+    <!-- COMO FUNCIONA -->
+    <section class="how-it-works" id="como-funciona">
         <div class="container">
-            <p>© 2025 CashTasks. Todos os direitos reservados.</p>
+            <div class="section-header">
+                <span class="section-tag">Como funciona</span>
+                <h2>Comece a ganhar em <span>3 passos</span></h2>
+                <p>É simples, rápido e gratuito. Baixe o app e comece agora mesmo.</p>
+            </div>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-icon">1</div>
+                    <h3>Baixe o App</h3>
+                    <p>Instale o CashTasks no seu celular e crie sua conta gratuita.</p>
+                </div>
+                <div class="step">
+                    <div class="step-icon">2</div>
+                    <h3>Faça Tarefas</h3>
+                    <p>Escolha entre jogos, vídeos, instalação de apps e redes sociais.</p>
+                </div>
+                <div class="step">
+                    <div class="step-icon">3</div>
+                    <h3>Ganhe e Saque</h3>
+                    <p>Acumule pontos e converta em dinheiro real a qualquer momento.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- BENEFÍCIOS -->
+    <section class="benefits">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Vantagens</span>
+                <h2>Por que escolher o <span>CashTasks</span></h2>
+            </div>
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <div class="benefit-icon">💰</div>
+                    <h3>Dinheiro Real</h3>
+                    <p>Converta seus pontos em dinheiro e saque via M-Pesa, Emola ou PayPal.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">🎮</div>
+                    <h3>Tarefas Diversas</h3>
+                    <p>Jogos, vídeos, instalação de apps, redes sociais e muito mais.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">⚡</div>
+                    <h3>Pagamento Rápido</h3>
+                    <p>Saques processados rapidamente, sem burocracia.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">📱</div>
+                    <h3>App Intuitivo</h3>
+                    <p>Interface simples e fácil de usar para todos.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">🔒</div>
+                    <h3>Seguro e Confiável</h3>
+                    <p>Seus dados são protegidos com a melhor tecnologia.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">🎯</div>
+                    <h3>Disponível para Todos</h3>
+                    <p>Qualquer pessoa pode participar e ganhar dinheiro.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CHAMADA FINAL -->
+    <section class="cta">
+        <div class="container">
+            <div class="cta-box">
+                <h2>Pronto para começar a ganhar? 🚀</h2>
+                <p>Baixe o CashTasks agora e comece a transformar seu tempo em dinheiro real.</p>
+                <a href="cashtasks://open" class="btn btn-primary btn-large">
+                    📱 Abrir CashTasks
+                </a>
+                <div class="cta-stores">
+                    <span>Disponível para:</span>
+                    <div class="store-icons">
+                        <span class="store-badge">📱 Android</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container footer-container">
+            <div class="footer-brand">
+                <img src="assets/images/logo-white.png" alt="CashTasks" class="footer-logo">
+                <p>Ganhe dinheiro realizando tarefas simples no seu celular.</p>
+                <div class="footer-social">
+                    <a href="#" aria-label="Instagram">📸</a>
+                    <a href="#" aria-label="Facebook">👍</a>
+                    <a href="#" aria-label="Twitter">🐦</a>
+                </div>
+            </div>
+            <div class="footer-links">
+                <div class="footer-column">
+                    <h4>Navegação</h4>
+                    <a href="index.html">Início</a>
+                    <a href="termos.html">Termos de Serviço</a>
+                    <a href="privacidade.html">Política de Privacidade</a>
+                    <a href="ajuda.html">Ajuda</a>
+                </div>
+                <div class="footer-column">
+                    <h4>Contato</h4>
+                    <a href="mailto:suporte@mjdevelopermoz.xyz">suporte@mjdevelopermoz.xyz</a>
+                    <a href="cashtasks://open">Abrir CashTasks</a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="container">
+                <p>© 2026 CashTasks. Todos os direitos reservados. Desenvolvido por <strong>MJDev</strong>.</p>
+            </div>
         </div>
     </footer>
+
+    <script src="assets/js/main.js"></script>
 </body>
 </html>
