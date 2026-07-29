@@ -46,14 +46,14 @@
             const openAppBtn = document.getElementById('openAppBtn');
             const openAppBtnError = document.getElementById('openAppBtnError');
 
-            // ✅ Extrair os parâmetros da URL
+            // Obter a URL de confirmação
             const urlParams = new URLSearchParams(window.location.search);
             const confirmationUrl = urlParams.get('confirmation');
 
             if (!confirmationUrl) {
                 loadingState.classList.add('hidden');
                 errorState.classList.remove('hidden');
-                errorMessage.textContent = 'Link de confirmação inválido. Tente novamente.';
+                errorMessage.textContent = 'Link de confirmação inválido.';
                 openAppBtnError.href = 'cashtasks://auth-callback';
                 return;
             }
@@ -64,32 +64,23 @@
                 const url = new URL(confirmationUrl);
                 redirectTo = url.searchParams.get('redirect_to');
             } catch (e) {
-                // Se não for uma URL válida, tenta extrair manualmente
                 const match = confirmationUrl.match(/redirect_to=([^&]+)/);
                 if (match) redirectTo = decodeURIComponent(match[1]);
             }
 
-            // ✅ Se encontrou redirect_to, usa-o. Senão, usa o link padrão
+            // ✅ Usar o redirect_to que o Supabase já fornece (com o code)
             const deepLink = redirectTo || 'cashtasks://auth-callback';
             openAppBtn.href = deepLink;
             openAppBtnError.href = deepLink;
 
-            // ✅ Tentar confirmar via fetch
+            // ✅ Tentar confirmar via fetch (apenas para feedback visual)
             fetch(confirmationUrl, {
                 method: 'GET',
-                headers: {
-                    'Accept': 'application/json'
-                }
+                headers: { 'Accept': 'application/json' }
             })
-            .then(response => {
-                if (response.ok || response.status === 302) {
-                    loadingState.classList.add('hidden');
-                    successState.classList.remove('hidden');
-                } else {
-                    loadingState.classList.add('hidden');
-                    successState.classList.remove('hidden');
-                    document.querySelector('#successState p').textContent = 'Seu email foi verificado. Volte para o app.';
-                }
+            .then(() => {
+                loadingState.classList.add('hidden');
+                successState.classList.remove('hidden');
             })
             .catch(() => {
                 loadingState.classList.add('hidden');
@@ -97,8 +88,8 @@
                 document.querySelector('#successState p').textContent = 'Seu email foi verificado. Volte para o app.';
             })
             .finally(() => {
-                // ✅ Redirecionar automaticamente após 2.5 segundos para o redirect_to
-                setTimeout(function() {
+                // ✅ Redirecionar para o deep link com o code
+                setTimeout(() => {
                     window.location.href = deepLink;
                 }, 2500);
             });
