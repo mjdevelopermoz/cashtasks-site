@@ -27,13 +27,13 @@
             <div class="success">✅</div>
             <h2>Email Confirmado!</h2>
             <p>Seu email foi verificado com sucesso.</p>
-            <a href="cashtasks://auth-callback" class="btn">Abrir CashTasks</a>
+            <a href="#" id="openAppBtn" class="btn">Abrir CashTasks</a>
         </div>
         <div id="errorState" class="hidden">
             <div class="error">❌</div>
             <h2>Erro na Confirmação</h2>
             <p id="errorMessage">Ocorreu um erro ao confirmar seu email.</p>
-            <a href="cashtasks://auth-callback" class="btn">Tentar novamente no app</a>
+            <a href="#" id="openAppBtnError" class="btn">Tentar novamente no app</a>
         </div>
     </div>
 
@@ -43,7 +43,10 @@
             const successState = document.getElementById('successState');
             const errorState = document.getElementById('errorState');
             const errorMessage = document.getElementById('errorMessage');
+            const openAppBtn = document.getElementById('openAppBtn');
+            const openAppBtnError = document.getElementById('openAppBtnError');
 
+            // ✅ Extrair os parâmetros da URL
             const urlParams = new URLSearchParams(window.location.search);
             const confirmationUrl = urlParams.get('confirmation');
 
@@ -51,10 +54,27 @@
                 loadingState.classList.add('hidden');
                 errorState.classList.remove('hidden');
                 errorMessage.textContent = 'Link de confirmação inválido. Tente novamente.';
+                openAppBtnError.href = 'cashtasks://auth-callback';
                 return;
             }
 
-            // ✅ Tentar confirmar via fetch, mas sempre redirecionar para o app
+            // ✅ Extrair o redirect_to da URL de confirmação
+            let redirectTo = null;
+            try {
+                const url = new URL(confirmationUrl);
+                redirectTo = url.searchParams.get('redirect_to');
+            } catch (e) {
+                // Se não for uma URL válida, tenta extrair manualmente
+                const match = confirmationUrl.match(/redirect_to=([^&]+)/);
+                if (match) redirectTo = decodeURIComponent(match[1]);
+            }
+
+            // ✅ Se encontrou redirect_to, usa-o. Senão, usa o link padrão
+            const deepLink = redirectTo || 'cashtasks://auth-callback';
+            openAppBtn.href = deepLink;
+            openAppBtnError.href = deepLink;
+
+            // ✅ Tentar confirmar via fetch
             fetch(confirmationUrl, {
                 method: 'GET',
                 headers: {
@@ -62,27 +82,25 @@
                 }
             })
             .then(response => {
-                // ✅ Se a resposta for ok, mostra sucesso
                 if (response.ok || response.status === 302) {
                     loadingState.classList.add('hidden');
                     successState.classList.remove('hidden');
                 } else {
-                    // ✅ Mesmo com erro, redireciona para o app (o email pode ter sido confirmado)
                     loadingState.classList.add('hidden');
                     successState.classList.remove('hidden');
                     document.querySelector('#successState p').textContent = 'Seu email foi verificado. Volte para o app.';
                 }
             })
             .catch(() => {
-                // ✅ Em caso de erro de rede, ainda redireciona para o app
                 loadingState.classList.add('hidden');
                 successState.classList.remove('hidden');
                 document.querySelector('#successState p').textContent = 'Seu email foi verificado. Volte para o app.';
             })
             .finally(() => {
+                // ✅ Redirecionar automaticamente após 2.5 segundos para o redirect_to
                 setTimeout(function() {
-                    window.location.href = 'cashtasks://auth-callback';
-                }, 3000);
+                    window.location.href = deepLink;
+                }, 2500);
             });
         })();
     </script>
